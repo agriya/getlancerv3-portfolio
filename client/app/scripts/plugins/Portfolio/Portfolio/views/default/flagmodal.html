@@ -1,0 +1,25 @@
+<div class="modal-content" ng-show="!viewphotos.is_flag">
+    <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" ng-click="closeInstance()">&times;</button>
+     <h2 class="text-center">{{'Report Portfolio'|translate}}</h2>
+     </div>
+    <div class="modal-body">
+        <form ng-submit="SaveFlag(flagform.$valid)" name="flagform" novalidate>
+            <div class="form-group"> <label>{{'Flag Category'|translate}} <span class="error">&nbsp;*</span></label>
+                <div class="frm-select"> <select id="inputCategory" name="categoryname" ng-model="flag.flag_category_id" class="form-control" required>
+                        <option value="">{{'Please Select'|translate}}</option>
+                        <option value="{{flagcategory.id}}" ng-repeat="flagcategory in flagcategories" ng-required="true">{{flagcategory.name}}</option>
+                    </select> </div> <span class="error" ng-show="(flagform.$submitted || flagform.categoryname.$touched) && (flagform.categoryname.$pristine || ContestUserForm.categoryname.$invalid) && (flagform.categoryname.$error.required)">{{'Required'| translate}} </span>                </div>
+            <div class="form-group"> <label>{{'Message'|translate}} <span class="error">&nbsp;*</span></label> <textarea type="text" ng-model="flag.message" class="form-control" id="inputMessage" name="inputMessage" ng-required="true" required></textarea> <span class="error"
+                    ng-show="(flagform.$submitted || flagform.inputMessage.$touched) && (flagform.inputMessage.$pristine || ContestUserForm.inputMessage.$invalid) && (flagform.inputMessage.$error.required)">{{'Required'| translate}} </span> </div>
+            <div class="modal-footer">
+            <button type="submit" ng-show="save_btn" class="btn btn-success" disabled>{{'Submit'|translate}}</button> <button type="submit" class="btn btn-success" ng-show="!save_btn">{{'Submit'|translate}}</button> <button class="btn btn-danger" type="button"
+                    ng-click="closeInstance()">{{'Cancel'|translate}}</button> </div>
+        </form>
+    </div>
+</div>
+<div class="modal-body" id="modal-body" ng-show="viewphotos.is_flag">
+    <div class="text-center">
+        <p class="text-bold">{{'You already flagged this portfolio'|translate}}</p>
+        <div class="top-mspace"> <button class="btn btn-danger" type="button" ng-click="closeInstance()">Close</button> </div>
+    </div>
+</div>

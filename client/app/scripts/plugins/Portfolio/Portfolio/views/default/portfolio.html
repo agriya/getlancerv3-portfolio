@@ -1,0 +1,64 @@
+<div class="modal-content portfolio-modal">
+    <div class="clearfix modal-header asd"> 
+        <button type="button" class="close" data-dismiss="modal" ng-click="closemodel()">&times;</button>
+        <h3 class="no-mar">{{'Upload Your Portfolio'| translate }}</h3>
+    </div>
+    <div class="carousel slide">
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="row">
+                    <div class="col-sm-6 left-image text-center"> 
+                        <img ng-if="newImage=== null" ng-src="{{cimage(portfolio.attachment.foreign_id,'large_thumb','Portfolio')}}"/> <img ng-if="newImage!== null" ngf-src="file" alt="[Image: Group]" title="Group"> 
+                         <span class="error bot-space" ng-if="error_message && error_message !== ''">
+                                            {{error_message}}</span>
+                    </div>
+                    <div class="col-sm-6 portfolio-modal-right">
+                        <div class="media top-space-10">
+                            <div class="pull-left"> 
+                                 <img alt="[Image: Modal-user]" class="img-circle" ng-src="{{user.userimage}}" height="30" width="30"> 
+                            </div>
+                            <div class="media-body text-left">
+                                <span class="text-bold text-13 blackc">{{user.username}}</span>
+                            </div>
+                        </div>
+                        <div class="resp-carousel text-left">
+                            <form class="bot-space-10" name="portfolio_form" method="post" ng-submit="portfolio_submit(portfolio_form.$valid)" novalidate>
+                                <ul class="list-unstyled">
+									<li>
+										<div class="form-group" ng-show="user.role_id == ConstUserRole.Admin && isAuth"> 
+                                            <label>{{'Employer'|translate}}</label>
+                                           <ajax-search-input text-attr="username" container-css-class="span2" query-param="q" selected-item="portfolio.username" ng-model="portfolio.user_id"></ajax-search-input>
+                                        </div>
+									</li>
+                                    <li>
+                                        <h4 class="text-uppercase text-16 Montserrat"> {{'Titles'|translate}}</h4> 
+                                        <input type="text" class="form-control" name="title" ng-model="portfolio.title" required value=""> 
+                                        <span class="error" ng-show="(portfolio_form.$submitted || portfolio_form.title.$touched) && (portfolio_form.title.$pristine || portfolio_form.title.$invalid) && (portfolio_form.title.$error.required)">{{'Required'| translate}} </span>                   
+                                    </li>
+                                    <li>
+                                        <h4 class="text-uppercase text-16 Montserrat"> {{'Description'|translate}}</h4> 
+                                        <textarea class="form-control" name="description" ng-model="portfolio.description" required rows="3"></textarea> 
+                                        <span class="error" ng-show="(portfolio_form.$submitted || portfolio_form.description.$touched) && (portfolio_form.description.$pristine || portfolio_form.description.$invalid) && (portfolio_form.description.$error.required)">{{'Required'| translate}} </span>
+                                    </li>
+                                    <li>
+                                        <h4 class="text-uppercase text-16 Montserrat"> {{'Skills'|translate}}</h4>
+                                        <tags-input name="skill" ng-model="tags" ng-required="true" replace-spaces-with-dashes="false" add-on-enter="true" on-tag-removed="tagRemoved($tag)">
+                                            <auto-complete source="loadTags($query)" load-on-empty="false" min-length="0" max-results-to-show="10"></auto-complete>
+                                        </tags-input> 
+                                        <span class="error" ng-show="(portfolio_form.$submitted || portfolio_form.skill.$touched) && (portfolio_form.skill.$pristine || portfolio_form.skill.$invalid) && (portfolio_form.skill.$error.required)">{{'Required'| translate}} </span>
+                                       
+                                    </li>                       
+                                </ul>
+                                <!--<div ng-show="portfoliopage==1"> <input type="file" ngf-select ng-model="file" name="file" ng-change="uploadPortfolioImage(file)" class="underline text-red" accept="image/*"> </div>-->
+                                <div> 
+                                    <button type="submit" class="btn btn-primary" ng-show="!save_btn">{{'Submit'|translate}}</button> 
+                                </div>
+                                   <button ng-show="save_btn" class="btn btn-primary" disabled>{{'Submit'|translate}}</button> 
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

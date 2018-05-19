@@ -1,0 +1,10 @@
+{
+	"name": "Portfolio", 
+	"class": "fa fa-2x fa-briefcase",
+	"description": "Portfolio",
+	"dependencies": "Portfolio",
+	"module_id": "832",
+	"module_hash": "a12b78c10a4bccde1be6f260cd8454b5",
+	"display_order": "12",
+	"plugin_name":"Portfolio/Portfolio"
+}

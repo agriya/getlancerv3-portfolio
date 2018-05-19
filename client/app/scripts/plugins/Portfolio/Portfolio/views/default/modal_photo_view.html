@@ -1,0 +1,102 @@
+<div class="modal-content portfolio-modal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="closemodel(redirect)">&times;</button>
+        <h3 class="no-mar" ng-bind-html="viewphotos.title"></h3>
+    </div>
+    <!-- carousel-->
+    <div class="modal-body">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <!-- first item -->
+                <div class="item active">
+                    <div class="row">
+                        <div class="col-sm-6 left-image text-center portfolio-view-left">
+                            <img class="img-responsive" ng-src="{{viewphotos.photo_url}}" alt="[Image: {{viewphotos.title}}]" />
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="portfolio-view-right">
+                                <div custom-scroll class="portfolio-view-right-content">
+                                    <div class="media top-space-10">
+                                        <a href="users/{{viewphotos.user_id}}/{{viewphotos.username}}">
+                                            <img alt="[Image: {{viewphotos.username}}]" class="img-circle" ng-src="{{viewphotos.user_avatar_url}}" height="30" width="30">
+                                        </a>
+                                        <a href="users/{{viewphotos.user_id}}/{{viewphotos.username}}">
+                                            <span class="text-bold">{{viewphotos.username}}</span>
+                                        </a>
+                                        <portfolio-follow-photo-model></portfolio-follow-photo-model>
+                                    </div>
+                                    <div class="resp-carousel">
+                                        <div class="clearfix">
+                                            <p class="pull-left text-black text-bold">{{viewphotos.follower_count}} {{'Favourites'|translate}}</p>
+                                            <p class="pull-left text-black col-sm-offset-1 text-bold">{{viewphotos.message_count}} {{'comments'|translate}}</p>
+                                            <p class="pull-right text-muted">{{viewphotos.created_at|timeago}}</p>
+                                        </div>
+                                        <ul class="list-inline">
+                                            <li>
+                                                <form class="form-horizontal no-pad">
+                                                    <portfolio-flag-view></portfolio-flag-view>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <portfolio_view_share></portfolio_view_share>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--<div>
+                                        
+                                        </div>-->
+                                    <ul class="list-unstyled">
+                                        <li class="bot-mar-25">
+                                            <h4 class="text-uppercase text-16"> {{'Title'|translate}}</h4>
+                                            <p class="text-black" ng-bind-html="viewphotos.title"></p>
+                                        </li>
+                                        <li class="bot-mar-25">
+                                            <h4 class="text-uppercase text-16"> {{'description'|translate}}</h4>
+                                            <p class="text-black" ng-bind-html="viewphotos.description"></p>
+                                        </li>
+                                        <li class="bot-mar-25">
+                                            <h4 ng-show="viewphotos.portfolios_skill.length" class="text-uppercase text-16">{{'Skills'|translate}}</h4>
+                                            <a href="portfolios/skill/{{phototag.skill.id}}/{{phototag.skill.slug}}" ng-repeat="phototag in viewphotos.portfolios_skill"
+                                                class="user-skills">
+                                                <span ng-if="((($index)%10) === 0)" class="label label-default">{{phototag.skill.name}}</span>
+                                                <span ng-if="((($index)%10) === 1)" class="label label-default">{{phototag.skill.name}}</span>
+                                                <span ng-if="((($index)%10) === 2)" class="label label-default">{{phototag.skill.name}}</span>
+                                                <span ng-if="((($index)%10) === 3)" class="label label-default">{{phototag.skill.name}}</span>
+                                                <span ng-if="((($index)%10) === 4)" class="label label-default">{{phototag.skill.name}}</span>
+                                                <span ng-if="((($index)%10) === 5)" class="label label-default">{{phototag.skill.name}}</span>
+                                            </a>
+                                        </li>
+                                        <portfolio-comments-view class="portfolio-com-list" photo-id="{{viewphotos.id}}" message-count="{{viewphotos.message_count}}"></portfolio-comments-view>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="add-form" ng-controller="PortfolioCommentsViewController">
+                                <div class="clearfix" ng-show="isAuth">
+                                    <h4 class="text-uppercase">{{'Post Your Comment'|translate}}</h4>
+                                    <form class="form-horizontal" ng-submit="saveComment()">
+                                        <div class="clearfix"> <input type="text" placeholder="{{'Add a comment'|translate}}" class="pull-left form-control"
+                                                ng-model="portfoliomessage.message"> 
+                                    </div>
+                                    </form>
+                                </div>
+                                <!--------Auth---->
+                                <!-------- Not Auth---->
+                                <div class="media" ng-show="!isAuth">
+                                    <div class="ver-space pull-left"> <a href="" ng-click="Login_func()" class="pull-left text-black text-bold right-space">{{'Log in'|translate}}  </a>
+                                          <p class="pull-left text-black col-sm-offset-0 text-bold"> 
+                                            <span> {{'to like and comment'|translate}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Controls -->
+            <a class="left carousel-control" href="" ng-if="data.prev_id !== -1" ng-click="slide_change('prev')" data-slide="prev"> <span class="fa fa-angle-left fa-3x"></span> </a>
+            <a class="right carousel-control" href="" ng-if="data.next_id !== -1" ng-click="slide_change('next')" data-slide="next">
+            <span class="fa fa-angle-right fa-3x"></span> </a>
+        </div>
+    </div>
+</div>

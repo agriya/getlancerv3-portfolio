@@ -1,0 +1,55 @@
+<section class="portfolio-blk clearfix">
+    <div>
+        <div class="clearfix pr">
+            <h3 class="home-title-blk" ng-show="showview">Portfolio </h3>
+            <div class="portfolio-view-all" ng-show="showview"> <a href="portfolios" title="View All" class="btn btn-primary">View All </a> </div>
+        </div>
+        <div class="row" ng-show="!photos.length">
+            <div class="col-xs-12">
+                <p class="text-center text-danger">{{'No records available'| translate }}</p>
+            </div>
+        </div>
+        <div>
+            <ul class="clearfix list-inline hire-block portfolios-category" ng-repeat="(key, value) in photos">
+                <li class="col-sm-3 photographers-image" ng-repeat="photo in value">
+                    <div class="portfolio-info-blk">
+                        <div class="clearfix image-port">
+                            <a href="" class="show text-center" ng-click="openPhotoModal(photo.id, photo.title, $index,'lg', key)"> 
+                                <img ng-src="{{photo.photos_url}}" alt="[Img: Portfolio1]" title="Portfolio1" class="center-block"> 
+                                <!--<span class="imghover"></span> -->
+                            </a>
+                        </div>
+                        <div class="">
+                            <h4 class="portfolio-name">{{photo.title}}</h4>
+                            <ul class="list-inline portfolio-count clearfix no-mar">
+                                <li ng-show="isAuth && photo.user.id === user.id && !showview">
+                                    <i class="fa fa-pencil right-sspace cursor" aria-hidden="true" ng-click="editPortfolio(photo.title,'lg',photo.id);$event.stopPropagation()" title="Edit"></i>
+                                </li>
+                                <li ng-show="isAuth && photo.user.id === user.id && !showview">
+                                    <i class="fa fa-trash-o right-sspace cursor" aria-hidden="true" ng-click="deletePortfolio(photo.id);$event.stopPropagation()" title="Delete"></i>
+                                </li>
+                                <li><i class="fa fa-heart right-sspace" aria-hidden="true" title="Favorites"></i>{{photo.follower_count}}</li>
+                                <li><i class="fa fa-eye right-sspace" aria-hidden="true" title="View"></i>{{photo.view_count}}</li>
+                                <li><i class="fa fa-comments-o right-sspace" aria-hidden="true" title="Reviews"></i>{{photo.message_count}}</li>
+                            </ul>
+                            <div class="photo-image hide">
+                                <div class="professional-image">
+                                    <div class="image-content" ng-click="openPhotoModal(photo.id, photo.title, $index,'lg', key)">
+                                        <p class="text-16 text-center">{{photo.title}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="photo-image hide">
+                        <div class="professional-image">
+                            <div class="image-content" ng-click="openPhotoModal(photo.id, photo.title, $index,'lg', key)">
+                                <p class="text-16 text-center">{{photo.title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>

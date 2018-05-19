@@ -1,0 +1,40 @@
+<section class="portfolio-lists photo-view">
+    <div class="container">
+        <div class="row" ng-repeat="(key, value) in photos">
+            <div class="hire-block portfolios-category">
+                <div class="col-xs-6 col-md-3 photographers-image" ng-repeat="photo in value">
+                    <div class="pr">
+                        <div class="img-edit-block">
+                            <a href="" class="show feutrimgCont" ng-click="openPhotoModal(photo.id, photo.title, $index,'lg', key)"> <img ng-src="{{photo.photos_url}}" alt="[Img: Portfolio1]" title="Portfolio1" class="center-block"> </a>
+                        </div>
+                        <div class="photo-image">
+                            <div class="professional-image">
+                                <div class="image-content" ng-click="openPhotoModal(photo.id, photo.title, $index,'lg', key)">
+                                    <p class="text-16 text-center">{{photo.title}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <h5>{{photo.title}}</h5>
+                        <ul class="list-inline navbar-btn">
+                            <li ng-show="isAuth && photo.user.id === user.id"><i class="fa fa-pencil right-sspace" aria-hidden="true" ng-click="editPortfolio(photo.title,'lg',photo.id);$event.stopPropagation()" title="Edit"></i></li>
+                            <li ng-show="isAuth && photo.user.id === user.id"> <i class="fa fa-trash-o right-sspace" aria-hidden="true" ng-click="deletePortfolio(photo.id);$event.stopPropagation()" title="Delete"></i> </li>
+                            <li><i class="fa fa-heart right-sspace" aria-hidden="true" title="Favorites"></i>{{photo.follower_count}}</li>
+                            <li><i class="fa fa-eye right-sspace" aria-hidden="true" title="View"></i>{{photo.view_count}}</li>
+                            <li><i class="fa fa-comments-o right-sspace" aria-hidden="true" title="Reviews"></i>{{photo.message_count}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="!photos.length && loader"> <img src="images/Loading_icon.gif" class="img-responsive center-block" id="loading"> </div>
+        <div class="row" ng-show="!photos.length && !loader">
+            <div class="col-xs-12">
+                <p class="text-center text-danger">{{'No records available'| translate }}</p>
+            </div>
+        </div>
+        <div ng-hide="lastpage == currentpage || !photos.length" class="col-xs-12 text-center ver-mspace30"> <a href="" title="See more portfolio" class="btn btn-primary btn-catergory text-uppercase" ng-click="loadMore()">{{'See more Portfolio' | translate }}</a> </div>
+    </div>
+    </div>
+</section>

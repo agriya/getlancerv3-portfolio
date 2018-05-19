@@ -1,0 +1,72 @@
+<div class="section photo-view ng-scope js-photo-view">
+    <div class="container">
+        <!-- first item -->
+        <div class="item active">
+            <div class="row">
+                <div class="col-sm-6 left-image text-center"> 
+                    <img class="img-responsive center-block" ng-src="{{photo.photos_url}}" alt="[Image: {{photo.title}}]" /> 
+                </div>
+                <div class="col-sm-6 bot-mspace">
+                    <div class="resp-carousel port-photo-view">
+                        <div class="media">
+                            <a href="portfolios/profile/{{photo.user_id}}">
+                                <img alt="[Image: Modal-user]" class="img-circle" ng-src="{{photo.user_avatar_url}}" height="30" width="30"> </a><a href="portfolios/profile/{{photo.user_id}}">
+                                <span class="text-bold">{{photo.user.username}}</span>
+                            </a>
+                            <portfolio-follow-photo-view></portfolio-follow-photo-view>
+                            <div>
+                                <div class="clearfix navbar-btn">
+                                    <p class="pull-left text-black text-bold">{{photo.follower_count}} {{'Favourites'|translate}}</p>
+                                    <p class="pull-left text-black col-sm-offset-1 text-bold">{{photo.message_count}} {{'comments'|translate}}</p>
+                                    <p class="pull-right text-muted">{{photo.created_at|timeago}}</p>
+                                </div>
+                                <ul class="list-inline">
+                                    <li>
+                                        <portfolio-flag-view-photo></portfolio-flag-view-photo>
+                                    </li>
+                                    <li>
+                                        <portfolio_view_share></portfolio_view_share>
+                                    </li>
+                                </ul>
+                                
+                                <ul class="list-unstyled">
+                                    <li class="bot-mar-25">
+                                        <h4 class="text-uppercase text-16"> {{'Title'|translate}}</h4>
+                                        <p class="text-black">{{photo.title}}</p>
+                                    </li>
+                                    <li class="bot-mar-25">
+                                        <h4 class="text-uppercase text-16"> {{'description'|translate}}</h4>
+                                        <p class="text-black">{{photo.description}}</p>
+                                    </li>
+                                    <li class="bot-mar-25">
+                                        <h4 class="text-uppercase text-16">{{'Skills'|translate}}</h4>
+                                        <a href="portfolios/skill/{{phototag.skill.id}}/{{phototag.skill.name}}" ng-repeat="phototag in photo.portfolios_skill" class="user-skills"> 
+                                            <span ng-if="((($index)%10) === 0)" class="label label-default">{{phototag.skill.name}}</span> 
+                                            <span ng-if="((($index)%10) === 1)" class="label label-default">{{phototag.skill.name}}</span> 
+                                            <span ng-if="((($index)%10) === 2)" class="label label-default">{{phototag.skill.name}}</span> 
+                                            <span ng-if="((($index)%10) === 3)" class="label label-default">{{phototag.skill.name}}</span> 
+                                            <span ng-if="((($index)%10) === 4)" class="label label-default">{{phototag.skill.name}}</span>                                            
+                                            <span ng-if="((($index)%10) === 5)" class="label label-default">{{phototag.skill.name}}</span> 
+                                        </a>
+                                    </li>
+                                    <portfolio-comments-view class="portfolio-com-list" photo-id="{{photo.id}}" message-count="{{photo.message_count}}"></portfolio-comments-view>
+                                </ul>
+                            </div>
+                            <div class="clearfix ver-space row" ng-show="isAuth">
+                                <div class="col-sm-8">
+                                    <portfolio-comments-add-view></portfolio-comments-add-view>
+                                </div>
+                            </div>
+                            <!--------Auth---->
+                            <div class="media" ng-show="!isAuth">
+                                <div class="ver-space pull-left"> <a href="" ng-click="Login_func()" class="pull-left text-black text-bold right-space">{{'Log in'|translate}} </a>
+                                     <p class="pull-left text-black col-sm-offset-0 text-bold">{{'to like and comment'|translate}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
