@@ -1,0 +1,10 @@
+Getlancer Portfolio - Change Log
+==========================
+
+1. [Bug PHP] -  In dashboard, click freelancer commented message, portfolio image is not displayed - Resolved.
+2. [Enhancement] - In employer login, favourite and unfavourite icons are displayed frasction of second 
+   in view portfolio page.
+3. [Enhancement] - Report this portfolio page, without entering any value and  click the submit button 
+    page is redirected to dashboard.
+4. [Enhancement] - In  portfolio page, broken immage displayed in comment. Need to display default image.
+5. [Bug PHP] - In portofolio comment accept empty space. Don't accept empty space - Resolved.
